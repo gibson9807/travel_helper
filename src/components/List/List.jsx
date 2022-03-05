@@ -3,21 +3,12 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
-import { SettingsSystemDaydreamSharp } from '@material-ui/icons';
 
 
-const List = () => {
+const List = ({places}) => {
     const classes = useStyles();
     const [type, setType] = useState('restaurants');
-    const [rating, setRating] = useState('');
-    const places = [
-        { name: 'miejsce1' },
-        { name: 'miejsce2' },
-        { name: 'miejsce3' },
-        { name: 'miejsce4' },
-        { name: 'miejsce5' },
-        { name: 'miejsce6' }
-    ];
+    const [rating, setRating] = useState('');  
 
 
     return (
