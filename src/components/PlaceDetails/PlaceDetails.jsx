@@ -4,9 +4,10 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
 
-import useStyles from './styles';
+import useStyles from './styles.js';
 
-const PlaceDetails = ({ place }) => {
+const PlaceDetails = ({ place,selected,refProp }) => {
+    if(selected) refProp?.current?.scrollIntoView({behavior:"smooth",block:"start"});
     const classes = useStyles();
 
     return (
@@ -18,6 +19,10 @@ const PlaceDetails = ({ place }) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5">{place.name}</Typography>
+                <Box display="flex" justifyContent="space-between">
+                    <Rating value={Number(place.rating)} readOnly />
+                    <Typography gutterBottom variant="subtitle1">według {place.num_reviews} recenzji</Typography>
+                </Box>
                 <Box display="flex" justifyContent="space-between">
                     <Typography variant="subtitle1">Price</Typography>
                     <Typography gutterBottom variant="subtitle1">{place.price_level}</Typography>
@@ -45,6 +50,7 @@ const PlaceDetails = ({ place }) => {
                         <PhoneIcon /> {place.phone}
                     </Typography>
                 )}
+                </CardContent>
                 <CardActions>
                     <Button size="small" color="primary" onClick={()=>window.open(place.web_url,'_blank')}>
                         Więcej informacji
@@ -55,11 +61,11 @@ const PlaceDetails = ({ place }) => {
                     </Button>
                 </CardActions>
 
-            </CardContent>
+            
         </Card>
 
 
     );
-}
+};
 
 export default PlaceDetails;
