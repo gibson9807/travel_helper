@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button, Card, CardMedia, CardContent, Chip } from '@material-ui/core';
+import { Box, Typography, Button, Card, CardMedia, CardContent, Chip, CardActions } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
@@ -45,6 +45,15 @@ const PlaceDetails = ({ place }) => {
                         <PhoneIcon /> {place.phone}
                     </Typography>
                 )}
+                <CardActions>
+                    <Button size="small" color="primary" onClick={()=>window.open(place.web_url,'_blank')}>
+                        Więcej informacji
+                    </Button>
+
+                    <Button size="small" color="primary" onClick={()=>window.open(place.website,'_blank')}>
+                        Witryna
+                    </Button>
+                </CardActions>
 
             </CardContent>
         </Card>

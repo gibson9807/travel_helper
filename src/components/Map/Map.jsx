@@ -6,7 +6,7 @@ import Rating from '@material-ui/lab';
 
 import useStyles from './styles';
 
-const Map = ({ setCoordinates, setBounds, coordinates }) => {
+const Map = ({ setCoordinates, setBounds, coordinates, places }) => {
     const classes = useStyles();
     const isMobile = useMediaQuery('(min-width:600px)');
     {/* const coordinates={lat: 50, lng:19}; */ }
@@ -26,6 +26,31 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
                 }}
                onChildClick={''}
             >
+                {places?.map((place,i)=>(
+                    <div
+                        className={classes.markerContainer}
+                        lat={Number(place.latitude)}
+                        lng={Number(place.longitude)}
+                        key={i}
+                        >
+                            {
+                                !isMobile ?(
+                                    <LocationOnOutlinedIcon color="primary" fontSize="large"/>
+                                ):(
+                                   <Paper elevation={3} className={classes.paper}>
+                                       <Typography className={classes.typography} variant="subtitle2" gutterBottom>
+                                            {place.name}
+                                       </Typography>
+                                        <img
+                                        className={classes.pointer} 
+                                        src={place.photo ? place.photo.images.large.url : 'https://www.saloodo.com/wp-content/uploads/2021/09/place-of-destination-1.png'} 
+                                        alt={place.name} 
+                                        />
+                                   </Paper> 
+                                )
+                            }
+                    </div>
+                ))}
             </GoogleMapReact>
         </div>
     );
